@@ -1,0 +1,91 @@
+---
+import StampCard from './StampCard.astro';
+import { getSchedule } from '../lib/data';
+
+const stops = getSchedule();
+---
+<section class="section" id="find-us">
+  <div class="wrap">
+    <div class="stops-section">
+      <div class="stops-intro">
+        <div class="kicker">Where to find us</div>
+        <h3>This week's stops.</h3>
+        <p>
+          Stops change from week to week — the schedule below is always
+          current. Follow along on Instagram in case of last-minute changes.
+        </p>
+      </div>
+      <div class="stamp-row">
+        {stops.map((stop) => (
+          <StampCard day={stop.day} date={stop.date} location={stop.location} time={stop.time} />
+        ))}
+      </div>
+      <div class="stops-cta">
+        <a class="ig-pill" href="https://instagram.com/yonseimatcha" target="_blank" rel="noopener">
+          Follow for schedule updates →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .stops-section {
+    background: var(--teal-deep);
+    color: var(--cream);
+    border-radius: var(--radius-soft);
+    padding: 56px 24px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stops-intro {
+    max-width: 640px;
+    margin-bottom: 40px;
+  }
+
+  .stops-intro .kicker {
+    color: var(--cream);
+    opacity: 0.85;
+  }
+
+  .stops-intro h3 {
+    font-size: clamp(24px, 3.2vw, 32px);
+    margin-top: 6px;
+    color: var(--cream);
+  }
+
+  .stops-intro p {
+    margin-top: 12px;
+    opacity: 0.85;
+    line-height: 1.6;
+    font-size: 15.5px;
+  }
+
+  .stamp-row {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+
+  .stamp-row :global(.stamp-card:nth-child(3n + 1)) {
+    transform: rotate(-3deg);
+  }
+
+  .stamp-row :global(.stamp-card:nth-child(3n + 2)) {
+    transform: rotate(1.5deg);
+  }
+
+  .stamp-row :global(.stamp-card:nth-child(3n + 3)) {
+    transform: rotate(-1.5deg);
+  }
+
+  .stops-cta {
+    margin-top: 36px;
+  }
+
+  .stops-cta :global(.ig-pill) {
+    background: var(--paper);
+    color: var(--teal-deep);
+  }
+</style>

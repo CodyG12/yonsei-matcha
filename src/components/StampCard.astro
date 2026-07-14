@@ -1,0 +1,60 @@
+---
+interface Props {
+  day: string;
+  date: string;
+  location: string;
+  time: string;
+}
+
+const { day, date, location, time } = Astro.props;
+---
+<div class="stamp-card">
+  <div class="stamp-day">{day}</div>
+  <div class="stamp-date">{date}</div>
+  <div class="stamp-place">{location}</div>
+  <div class="stamp-time">{time}</div>
+</div>
+
+<style>
+  .stamp-card {
+    flex: 1 1 220px;
+    max-width: 260px;
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 20px;
+    border: 2.5px dashed rgba(24, 24, 24, 0.28);
+    padding: 22px 20px;
+    position: relative;
+  }
+
+  .stamp-day {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--teal-deep);
+  }
+
+  .stamp-date {
+    font-size: 11px;
+    color: rgba(24, 24, 24, 0.55);
+    margin-top: 2px;
+  }
+
+  .stamp-place {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 10px;
+    line-height: 1.25;
+  }
+
+  .stamp-time {
+    margin-top: 12px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--teal-deep);
+  }
+</style>
