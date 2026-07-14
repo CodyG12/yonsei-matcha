@@ -1,0 +1,62 @@
+---
+const igHandle = 'yonseimatcha'; // TODO: confirm the real Instagram handle
+const contactEmail = 'hello@yonseimatcha.com'; // TODO: confirm the real contact email
+---
+<footer>
+  <div class="wrap">
+    <a class="logo-link" href="/" aria-label="Yonsei Matcha home">
+      <img
+        class="logo-img"
+        src="/images/logo-wordmark.svg"
+        alt="Yonsei Matcha — Kūpuna Kuahā"
+        width="220"
+        height="60"
+        loading="lazy"
+      />
+    </a>
+    <p>A fourth-generation matcha popup on O'ahu. Locations vary — see Instagram for this week's stops.</p>
+    <div class="foot-links">
+      <a href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener">Instagram</a>
+      <a href={`mailto:${contactEmail}`}>Email</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    padding: 56px 0 40px;
+    text-align: center;
+  }
+
+  footer .logo-link {
+    display: inline-flex;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  footer .logo-img {
+    height: 32px;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  footer p {
+    font-size: 13px;
+    opacity: 0.6;
+    margin-top: 6px;
+  }
+
+  footer .foot-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  footer .foot-links a {
+    text-decoration: none;
+    opacity: 0.7;
+  }
+</style>
