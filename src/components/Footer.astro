@@ -5,10 +5,10 @@ const contactEmail = "hello@yonseimatcha.com"; // TODO: confirm the real contact
 
 <footer>
   <div class="wrap">
-    <a class="logo-link" href="/" aria-label="Yonsei Matcha home">
+    <a class="logo-link" href={import.meta.env.BASE_URL} aria-label="Yonsei Matcha home">
       <img
         class="logo-img"
-        src="/images/logo-wordmark.svg"
+        src={`${import.meta.env.BASE_URL}images/logo-wordmark.svg`}
         alt="Yonsei Matcha — Kūpuna Kuahā"
         width="220"
         height="60"
@@ -28,7 +28,7 @@ const contactEmail = "hello@yonseimatcha.com"; // TODO: confirm the real contact
         aria-label="Instagram"
       >
         <img
-          src="/images/instagram.svg"
+          src={`${import.meta.env.BASE_URL}images/instagram.svg`}
           alt=""
           width="18"
           height="18"
@@ -37,7 +37,7 @@ const contactEmail = "hello@yonseimatcha.com"; // TODO: confirm the real contact
       </a>
       <a class="icon-link" href={`mailto:${contactEmail}`} aria-label="Email">
         <img
-          src="/images/email.svg"
+          src={`${import.meta.env.BASE_URL}images/email.svg`}
           alt=""
           width="18"
           height="18"

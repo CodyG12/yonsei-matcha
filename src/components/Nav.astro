@@ -2,10 +2,10 @@
 ---
 <nav>
   <div class="wrap">
-    <a class="logo-link" href="/" aria-label="Yonsei Matcha home">
+    <a class="logo-link" href={import.meta.env.BASE_URL} aria-label="Yonsei Matcha home">
       <img
         class="logo-img"
-        src="/images/logo-wordmark.svg"
+        src={`${import.meta.env.BASE_URL}images/logo-wordmark.svg`}
         alt="Yonsei Matcha — Kūpuna Kuahā"
         width="220"
         height="60"
