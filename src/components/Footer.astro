@@ -1,7 +1,8 @@
 ---
-const igHandle = 'yonseimatcha'; // TODO: confirm the real Instagram handle
-const contactEmail = 'hello@yonseimatcha.com'; // TODO: confirm the real contact email
+const igHandle = "yonseimatcha"; // TODO: confirm the real Instagram handle
+const contactEmail = "hello@yonseimatcha.com"; // TODO: confirm the real contact email
 ---
+
 <footer>
   <div class="wrap">
     <a class="logo-link" href="/" aria-label="Yonsei Matcha home">
@@ -14,18 +15,35 @@ const contactEmail = 'hello@yonseimatcha.com'; // TODO: confirm the real contact
         loading="lazy"
       />
     </a>
-    <p>A fourth-generation matcha popup on O'ahu. Locations vary — see Instagram for this week's stops.</p>
+    <p>
+      Your favorite matcha popup on O'ahu. Locations vary, see Instagram for
+      this week's stops.
+    </p>
     <div class="foot-links">
       <a
-        class="ig-link"
+        class="icon-link"
         href={`https://instagram.com/${igHandle}`}
         target="_blank"
         rel="noopener"
         aria-label="Instagram"
       >
-        <img src="/images/instagram.svg" alt="" width="18" height="18" loading="lazy" />
+        <img
+          src="/images/instagram.svg"
+          alt=""
+          width="18"
+          height="18"
+          loading="lazy"
+        />
       </a>
-      <a href={`mailto:${contactEmail}`}>Email</a>
+      <a class="icon-link" href={`mailto:${contactEmail}`} aria-label="Email">
+        <img
+          src="/images/email.svg"
+          alt=""
+          width="18"
+          height="18"
+          loading="lazy"
+        />
+      </a>
     </div>
   </div>
 </footer>
@@ -69,12 +87,12 @@ const contactEmail = 'hello@yonseimatcha.com'; // TODO: confirm the real contact
     opacity: 0.7;
   }
 
-  footer .ig-link {
+  footer .icon-link {
     display: inline-flex;
     align-items: center;
   }
 
-  footer .ig-link img {
+  footer .icon-link img {
     width: 18px;
     height: 18px;
   }
