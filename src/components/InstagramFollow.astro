@@ -1,5 +1,12 @@
 ---
+import { Image } from 'astro:assets';
+import marketSign from '../assets/images/market-sign-matcha.jpg';
+import marketPrep from '../assets/images/market-prep.jpg';
+import strawberryMatcha from '../assets/images/strawberry-matcha.jpg';
+import matchaHojichaPair from '../assets/images/matcha-hojicha-pair.jpg';
+
 const igHandle = 'yonseimatcha'; // TODO: confirm the real Instagram handle
+const placeholderCount = 4; // remaining empty tiles until more photos are added
 ---
 <section class="section">
   <div class="wrap">
@@ -7,8 +14,12 @@ const igHandle = 'yonseimatcha'; // TODO: confirm the real Instagram handle
       <div class="kicker">Stay in the loop</div>
       <h2>Follow along on Instagram</h2>
       <p>Weekly market schedules, new specials, and pop-up announcements go up there first.</p>
-      <div class="ig-grid" aria-hidden="true">
-        {Array.from({ length: 8 }).map(() => <div></div>)}
+      <div class="ig-grid">
+        <Image src={marketSign} alt="Yonsei Matcha market sign with a fresh matcha latte" width={320} height={320} loading="lazy" />
+        <Image src={marketPrep} alt="Preparing drinks at the Yonsei Matcha market table" width={320} height={320} loading="lazy" />
+        <Image src={strawberryMatcha} alt="Iced strawberry matcha latte topped with a dried strawberry" width={320} height={320} loading="lazy" />
+        <Image src={matchaHojichaPair} alt="A hojicha latte and a strawberry matcha latte side by side" width={320} height={320} loading="lazy" />
+        {Array.from({ length: placeholderCount }).map(() => <div aria-hidden="true"></div>)}
       </div>
       <a class="btn btn-primary" href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener">
         @{igHandle} →
@@ -51,14 +62,25 @@ const igHandle = 'yonseimatcha'; // TODO: confirm the real Instagram handle
     margin: 34px auto 0;
   }
 
+  .ig-grid img,
   .ig-grid div {
     aspect-ratio: 1;
     border-radius: 14px;
+  }
+
+  .ig-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ig-grid div {
     background: linear-gradient(135deg, var(--mint) 0%, var(--teal-deep) 100%);
     opacity: 0.5;
   }
 
-  .ig-grid div:nth-child(2n) {
+  .ig-grid div:nth-of-type(2n) {
     opacity: 0.75;
   }
 
