@@ -1,0 +1,73 @@
+---
+---
+<nav>
+  <div class="wrap">
+    <a class="logo-link" href="/" aria-label="Yonsei Matcha home">
+      <img
+        class="logo-img"
+        src="/images/logo-wordmark.svg"
+        alt="Yonsei Matcha — Kūpuna Kuahā"
+        width="220"
+        height="60"
+      />
+    </a>
+    <div class="navlinks">
+      <a href="#menu">Menu</a>
+      <a href="#find-us">Find Us</a>
+      <a href="#story">Our Story</a>
+    </div>
+    <a class="ig-pill" href="#find-us">📍 This week's stops</a>
+  </div>
+</nav>
+
+<style>
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(247, 242, 231, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(24, 24, 24, 0.1);
+  }
+
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .logo-link {
+    flex: none;
+  }
+
+  .logo-img {
+    height: 36px;
+    width: auto;
+  }
+
+  .navlinks {
+    display: none;
+    gap: 28px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .navlinks a {
+    text-decoration: none;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+  }
+
+  .navlinks a:hover {
+    opacity: 1;
+  }
+
+  @media (min-width: 720px) {
+    .navlinks {
+      display: flex;
+    }
+  }
+</style>
