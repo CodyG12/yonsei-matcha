@@ -17,7 +17,7 @@
 - Every meaningful `<img>` has real `alt` text; purely decorative elements get `aria-hidden="true"`.
 - `:focus-visible` must be visibly styled (mockup has no focus styling — this plan adds it).
 - `@media (prefers-reduced-motion: reduce)` must disable smooth scrolling and hover-lift transforms.
-- Nav's CTA pill reads "This week's stops" and scrolls to `#find-us` — it is *not* an outbound Instagram link.
+- Nav's CTA pill reads "This week's stops" and scrolls to `#find-us` — it is _not_ an outbound Instagram link.
 - No live Instagram API integration — link out to Instagram as a static URL only.
 
 ---
@@ -25,6 +25,7 @@
 ### Task 1: Project scaffolding
 
 **Files:**
+
 - Create: `package.json`
 - Create: `tsconfig.json`
 - Create: `astro.config.mjs`
@@ -32,6 +33,7 @@
 - Create: `src/pages/.gitkeep` (placeholder so the empty dir is created; removed in Task 13)
 
 **Interfaces:**
+
 - Produces: an installable Astro project with `npm run dev`, `npm run build`, `npm run preview`, `npm test` scripts available to every later task.
 
 - [ ] **Step 1: Create `package.json`**
@@ -76,7 +78,7 @@
 - [ ] **Step 3: Create `astro.config.mjs`**
 
 ```js
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
 // output: 'static' is the default — no SSR adapter needed for this site.
 export default defineConfig({});
@@ -121,9 +123,11 @@ git commit -m "chore: scaffold Astro project"
 ### Task 2: Design tokens & global stylesheet
 
 **Files:**
+
 - Create: `src/styles/global.css`
 
 **Interfaces:**
+
 - Consumes: nothing.
 - Produces: CSS custom properties (`--ink`, `--cream`, `--paper`, `--mint`, `--teal-deep`, `--radius-soft`) and shared utility classes (`.wrap`, `.section`, `.section-head`, `.kicker`, `.btn`, `.btn-primary`, `.btn-ghost`, `.ig-pill`, `.skip-link`) that every later component and layout task relies on.
 
@@ -132,14 +136,16 @@ git commit -m "chore: scaffold Astro project"
 ```css
 :root {
   --ink: #181818;
-  --cream: #F7F2E7;
-  --paper: #FFFDF8;
-  --mint: #A8D6D6;
-  --teal-deep: #4F8482;
+  --cream: #f7f2e7;
+  --paper: #fffdf8;
+  --mint: #a8d6d6;
+  --teal-deep: #4f8482;
   --radius-soft: 26px;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -151,7 +157,9 @@ html {
   html {
     scroll-behavior: auto;
   }
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -163,18 +171,21 @@ body {
   margin: 0;
   background: var(--cream);
   color: var(--ink);
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, .display {
-  font-family: 'Playfair Display', serif;
+h1,
+h2,
+h3,
+.display {
+  font-family: "Playfair Display", serif;
   font-weight: 600;
   margin: 0;
 }
 
 .quicksand {
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 a {
@@ -223,11 +234,11 @@ img {
 }
 
 .kicker {
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-size: 12.5px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
   color: var(--teal-deep);
 }
 
@@ -246,8 +257,8 @@ img {
   font-size: 14px;
   text-decoration: none;
   border: 2px solid transparent;
-  transition: transform .15s ease;
-  font-family: 'Quicksand', sans-serif;
+  transition: transform 0.15s ease;
+  font-family: "Quicksand", sans-serif;
   cursor: pointer;
 }
 
@@ -277,7 +288,7 @@ img {
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 ```
 
@@ -293,10 +304,12 @@ git commit -m "feat: add design tokens and global stylesheet"
 ### Task 3: Price formatting utility (TDD)
 
 **Files:**
+
 - Create: `src/lib/pricing.ts`
 - Test: `src/lib/pricing.test.ts`
 
 **Interfaces:**
+
 - Consumes: nothing.
 - Produces: `export interface PriceVariant { label: string; price: number }` and `export function formatPrice(variants: PriceVariant[]): string` from `src/lib/pricing.ts`, used by `SpecialCard.astro` (Task 9) and `Menu.astro` (Task 9).
 
@@ -305,36 +318,36 @@ git commit -m "feat: add design tokens and global stylesheet"
 Create `src/lib/pricing.test.ts`:
 
 ```ts
-import { describe, it, expect } from 'vitest';
-import { formatPrice } from './pricing';
+import { describe, it, expect } from "vitest";
+import { formatPrice } from "./pricing";
 
-describe('formatPrice', () => {
-  it('renders a single unlabeled variant as a plain dollar amount', () => {
-    expect(formatPrice([{ label: '', price: 7.5 }])).toBe('$7.50');
+describe("formatPrice", () => {
+  it("renders a single unlabeled variant as a plain dollar amount", () => {
+    expect(formatPrice([{ label: "", price: 7.5 }])).toBe("$7.50");
   });
 
-  it('joins two labeled variants with a slash', () => {
+  it("joins two labeled variants with a slash", () => {
     expect(
       formatPrice([
-        { label: 'Matcha', price: 8 },
-        { label: 'Hojicha', price: 7.5 },
-      ])
-    ).toBe('Matcha $8.00 / Hojicha $7.50');
+        { label: "Matcha", price: 8 },
+        { label: "Hojicha", price: 7.5 },
+      ]),
+    ).toBe("Matcha $8.00 / Hojicha $7.50");
   });
 
-  it('always shows two decimal places, even for whole dollar amounts', () => {
-    expect(formatPrice([{ label: '', price: 7 }])).toBe('$7.00');
+  it("always shows two decimal places, even for whole dollar amounts", () => {
+    expect(formatPrice([{ label: "", price: 7 }])).toBe("$7.00");
   });
 
-  it('shows the label even for a single labeled variant', () => {
-    expect(formatPrice([{ label: 'Jasmine Matcha Cloud', price: 7.5 }])).toBe(
-      'Jasmine Matcha Cloud $7.50'
+  it("shows the label even for a single labeled variant", () => {
+    expect(formatPrice([{ label: "Jasmine Matcha Cloud", price: 7.5 }])).toBe(
+      "Jasmine Matcha Cloud $7.50",
     );
   });
 
-  it('throws on an empty variant list, since that means the menu data is malformed', () => {
+  it("throws on an empty variant list, since that means the menu data is malformed", () => {
     expect(() => formatPrice([])).toThrow(
-      'formatPrice requires at least one price variant'
+      "formatPrice requires at least one price variant",
     );
   });
 });
@@ -357,16 +370,16 @@ export interface PriceVariant {
 
 export function formatPrice(variants: PriceVariant[]): string {
   if (variants.length === 0) {
-    throw new Error('formatPrice requires at least one price variant');
+    throw new Error("formatPrice requires at least one price variant");
   }
 
-  if (variants.length === 1 && variants[0].label === '') {
+  if (variants.length === 1 && variants[0].label === "") {
     return formatDollar(variants[0].price);
   }
 
   return variants
     .map((variant) => `${variant.label} ${formatDollar(variant.price)}`.trim())
-    .join(' / ');
+    .join(" / ");
 }
 
 function formatDollar(amount: number): string {
@@ -391,11 +404,13 @@ git commit -m "feat: add price formatting utility with tests"
 ### Task 4: Data loading module and real schedule/menu content
 
 **Files:**
+
 - Create: `src/lib/data.ts`
 - Create: `data/schedule.yaml`
 - Create: `data/menu.yaml`
 
 **Interfaces:**
+
 - Consumes: `js-yaml` (installed in Task 1).
 - Produces: `export interface ScheduleStop { day: string; date: string; location: string; time: string }`, `export interface MenuItem { section: 'staple' | 'special'; name: string; description: string; price: { label: string; price: number }[] }`, `export function getSchedule(): ScheduleStop[]`, `export function getMenu(): MenuItem[]` from `src/lib/data.ts`, used by `ThisWeeksStops.astro` (Task 8) and `Menu.astro` (Task 9).
 
@@ -480,9 +495,9 @@ items:
 - [ ] **Step 3: Write `src/lib/data.ts`**
 
 ```ts
-import fs from 'node:fs';
-import path from 'node:path';
-import { load } from 'js-yaml';
+import fs from "node:fs";
+import path from "node:path";
+import { load } from "js-yaml";
 
 export interface ScheduleStop {
   day: string;
@@ -492,22 +507,22 @@ export interface ScheduleStop {
 }
 
 export interface MenuItem {
-  section: 'staple' | 'special';
+  section: "staple" | "special";
   name: string;
   description: string;
   price: { label: string; price: number }[];
 }
 
-const dataDir = path.resolve(process.cwd(), 'data');
+const dataDir = path.resolve(process.cwd(), "data");
 
 export function getSchedule(): ScheduleStop[] {
-  const raw = fs.readFileSync(path.join(dataDir, 'schedule.yaml'), 'utf-8');
+  const raw = fs.readFileSync(path.join(dataDir, "schedule.yaml"), "utf-8");
   const parsed = load(raw) as { stops: ScheduleStop[] };
   return parsed.stops;
 }
 
 export function getMenu(): MenuItem[] {
-  const raw = fs.readFileSync(path.join(dataDir, 'menu.yaml'), 'utf-8');
+  const raw = fs.readFileSync(path.join(dataDir, "menu.yaml"), "utf-8");
   const parsed = load(raw) as { items: MenuItem[] };
   return parsed.items;
 }
@@ -516,6 +531,7 @@ export function getMenu(): MenuItem[] {
 - [ ] **Step 4: Sanity-check the parser with a quick Node script**
 
 Run:
+
 ```bash
 node -e "
 const { load } = require('js-yaml');
@@ -525,6 +541,7 @@ const m = load(fs.readFileSync('data/menu.yaml', 'utf-8'));
 console.log('stops:', s.stops.length, 'items:', m.items.length);
 "
 ```
+
 Expected: `stops: 3 items: 6`
 
 - [ ] **Step 5: Commit**
@@ -539,10 +556,12 @@ git commit -m "feat: add YAML data loading and initial schedule/menu content"
 ### Task 5: Logo placeholder asset & base layout
 
 **Files:**
+
 - Create: `public/images/logo-wordmark.svg`
 - Create: `src/layouts/BaseLayout.astro`
 
 **Interfaces:**
+
 - Consumes: `src/styles/global.css` (Task 2), `@fontsource/*` packages (Task 1).
 - Produces: `public/images/logo-wordmark.svg` referenced by `Nav.astro` (Task 6) and `Footer.astro` (Task 12) as `/images/logo-wordmark.svg`; `BaseLayout.astro` with `Props { title: string; description: string }`, named slots `nav` and `footer`, and a default slot wrapped in `<main id="main">`, used by `src/pages/index.astro` (Task 13).
 
@@ -631,9 +650,11 @@ git commit -m "feat: add base layout, fonts, and placeholder logo"
 ### Task 6: Nav component
 
 **Files:**
+
 - Create: `src/components/Nav.astro`
 
 **Interfaces:**
+
 - Consumes: `public/images/logo-wordmark.svg` (Task 5), `.ig-pill` from global.css (Task 2).
 - Produces: `Nav.astro` (no props), used by `src/pages/index.astro` (Task 13) via `<Nav slot="nav" />`.
 
@@ -747,9 +768,11 @@ git commit -m "feat: add sticky nav component"
 ### Task 7: Hero component
 
 **Files:**
+
 - Create: `src/components/Hero.astro`
 
 **Interfaces:**
+
 - Consumes: `.btn`, `.btn-primary`, `.btn-ghost`, `.wrap` from global.css (Task 2).
 - Produces: `Hero.astro` (no props), used by `src/pages/index.astro` (Task 13).
 
@@ -898,10 +921,12 @@ git commit -m "feat: add hero section"
 ### Task 8: Schedule section (StampCard + ThisWeeksStops)
 
 **Files:**
+
 - Create: `src/components/StampCard.astro`
 - Create: `src/components/ThisWeeksStops.astro`
 
 **Interfaces:**
+
 - Consumes: `getSchedule(): ScheduleStop[]` from `src/lib/data.ts` (Task 4); `.section`, `.section-head`, `.kicker`, `.wrap`, `.ig-pill` from global.css (Task 2).
 - Produces: `StampCard.astro` with `Props { day: string; date: string; location: string; time: string }`; `ThisWeeksStops.astro` (no props, renders `<section id="find-us">`), used by `src/pages/index.astro` (Task 13).
 
@@ -1103,10 +1128,12 @@ git commit -m "feat: add data-driven weekly stops section"
 ### Task 9: Menu section (SpecialCard + Menu)
 
 **Files:**
+
 - Create: `src/components/SpecialCard.astro`
 - Create: `src/components/Menu.astro`
 
 **Interfaces:**
+
 - Consumes: `formatPrice`, `PriceVariant` from `src/lib/pricing.ts` (Task 3); `getMenu(): MenuItem[]` from `src/lib/data.ts` (Task 4); `.section`, `.section-head`, `.kicker`, `.wrap` from global.css (Task 2).
 - Produces: `SpecialCard.astro` with `Props { name: string; description: string; price: PriceVariant[] }`; `Menu.astro` (no props, renders `<section id="menu">`), used by `src/pages/index.astro` (Task 13).
 
@@ -1341,9 +1368,11 @@ git commit -m "feat: add data-driven menu section"
 ### Task 10: Story component
 
 **Files:**
+
 - Create: `src/components/Story.astro`
 
 **Interfaces:**
+
 - Consumes: `.section`, `.wrap` from global.css (Task 2).
 - Produces: `Story.astro` (no props, renders `<section id="story">`), used by `src/pages/index.astro` (Task 13).
 
@@ -1495,9 +1524,11 @@ git commit -m "feat: add story section"
 ### Task 11: Instagram follow component
 
 **Files:**
+
 - Create: `src/components/InstagramFollow.astro`
 
 **Interfaces:**
+
 - Consumes: `.section`, `.wrap`, `.kicker`, `.btn`, `.btn-primary` from global.css (Task 2).
 - Produces: `InstagramFollow.astro` (no props), used by `src/pages/index.astro` (Task 13).
 
@@ -1619,9 +1650,11 @@ git commit -m "feat: add Instagram follow section"
 ### Task 12: Footer component
 
 **Files:**
+
 - Create: `src/components/Footer.astro`
 
 **Interfaces:**
+
 - Consumes: `public/images/logo-wordmark.svg` (Task 5), `.wrap` from global.css (Task 2).
 - Produces: `Footer.astro` (no props), used by `src/pages/index.astro` (Task 13) via `<Footer slot="footer" />`.
 
@@ -1694,29 +1727,7 @@ const contactEmail = 'hello@yonseimatcha.com'; // TODO: confirm the real contact
 
 - [ ] **Step 2: Wire into the check page and verify**
 
-Replace `src/pages/index.astro` with:
-
-```astro
----
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav from '../components/Nav.astro';
-import Hero from '../components/Hero.astro';
-import ThisWeeksStops from '../components/ThisWeeksStops.astro';
-import Menu from '../components/Menu.astro';
-import Story from '../components/Story.astro';
-import InstagramFollow from '../components/InstagramFollow.astro';
-import Footer from '../components/Footer.astro';
----
-<BaseLayout title="Yonsei Matcha" description="Temporary check page">
-  <Nav slot="nav" />
-  <Hero />
-  <ThisWeeksStops />
-  <Menu />
-  <Story />
-  <InstagramFollow />
-  <Footer slot="footer" />
-</BaseLayout>
-```
+Add `import Footer from '../components/Footer.astro';` and `<Footer slot="footer" />` (as the last child, alongside `<Nav slot="nav" />`) in `src/pages/index.astro`.
 
 Run: `npm run dev &` then `sleep 2 && curl -s http://localhost:4321 | grep -o "hello@yonseimatcha.com"`
 Expected: `hello@yonseimatcha.com`
@@ -1735,9 +1746,11 @@ git commit -m "feat: add footer"
 ### Task 13: Final page assembly and accessibility pass
 
 **Files:**
+
 - Modify: `src/pages/index.astro`
 
 **Interfaces:**
+
 - Consumes: every component from Tasks 5–12.
 - Produces: the final `src/pages/index.astro`, the complete page.
 
@@ -1771,22 +1784,26 @@ import Footer from '../components/Footer.astro';
 - [ ] **Step 2: Verify heading order is sequential (accessibility check)**
 
 Run: `npm run dev &` then:
+
 ```bash
 sleep 2
-curl -s http://localhost:4321 | grep -oE '<h[1-4][^>]*>' 
+curl -s http://localhost:4321 | grep -oE '<h[1-4][^>]*>'
 kill %1
 ```
+
 Expected: exactly one `<h1` (in Hero), followed only by `<h2`/`<h3`/`<h4` tags in document order — no heading level is skipped from `<h1` straight to `<h4` without an intervening `<h2`/`<h3` (the `<h4>` special-card titles inside Menu follow an `<h2>` from the Menu section head, which is correct nesting).
 
 - [ ] **Step 3: Verify the skip link and focus outline are present**
 
 Run: `npm run dev &` then:
+
 ```bash
 sleep 2
 curl -s http://localhost:4321 | grep -o 'Skip to content'
 curl -s http://localhost:4321/_astro/*.css 2>/dev/null | grep -o 'focus-visible' || grep -o 'focus-visible' src/styles/global.css
 kill %1
 ```
+
 Expected: both greps return a match (`Skip to content` in the HTML, `focus-visible` in the CSS).
 
 - [ ] **Step 4: Commit**
@@ -1801,9 +1818,11 @@ git commit -m "feat: assemble final page"
 ### Task 14: Build verification, README, and deployment readiness
 
 **Files:**
+
 - Create: `README.md`
 
 **Interfaces:**
+
 - Consumes: the entire project from Tasks 1–13.
 - Produces: nothing new for other tasks — this is the final verification and handoff task.
 
@@ -1828,11 +1847,13 @@ curl -s http://localhost:4321 | grep -o "Matcha \$8.00 / Hojicha \$7.50"
 curl -s http://localhost:4321 | grep -o "Jasmine Matcha Cloud"
 kill %1
 ```
+
 Expected: all four greps return a match, confirming the built (not just dev-mode) site correctly renders nav branding, schedule data, and menu data.
 
 - [ ] **Step 4: Manually verify in a real browser**
 
 Run `npm run dev`, open `http://localhost:4321` in a browser, and check:
+
 - Layout looks correct at a phone-width viewport (this is the primary use case — most visitors check the site on their phone at a market).
 - Tab through the page with the keyboard; confirm the skip link appears on the first Tab press and every interactive element shows a visible teal focus ring.
 - In your OS accessibility settings, enable "reduce motion," reload, and confirm smooth-scroll and button hover-lift are disabled.
@@ -1841,7 +1862,7 @@ This step can't be automated by this plan — it requires human eyes or a browse
 
 - [ ] **Step 5: Write `README.md`**
 
-```markdown
+````markdown
 # Yonsei Matcha
 
 Source for the Yonsei Matcha popup website, built with [Astro](https://astro.build).
@@ -1874,6 +1895,7 @@ npm run build     # production build, output in dist/
 npm run preview   # serve the production build locally
 npm test          # run the price-formatting unit tests
 ```
+````
 
 ## Deploying
 
@@ -1896,14 +1918,15 @@ This is a static Astro site with no backend. To deploy on Vercel:
 - **Instagram grid:** currently 8 gradient placeholder tiles in
   `src/components/InstagramFollow.astro`. Replace with real thumbnails the
   same way.
-```
+
+````
 
 - [ ] **Step 6: Commit**
 
 ```bash
 git add README.md
 git commit -m "docs: add README with weekly editing and deploy instructions"
-```
+````
 
 ---
 
