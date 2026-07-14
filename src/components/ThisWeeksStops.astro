@@ -70,15 +70,15 @@ const stops = getSchedule();
   }
 
   .stamp-row :global(.stamp-card:nth-child(3n + 1)) {
-    transform: rotate(-3deg);
+    --stamp-rotate: -3deg;
   }
 
   .stamp-row :global(.stamp-card:nth-child(3n + 2)) {
-    transform: rotate(1.5deg);
+    --stamp-rotate: 1.5deg;
   }
 
   .stamp-row :global(.stamp-card:nth-child(3n + 3)) {
-    transform: rotate(-1.5deg);
+    --stamp-rotate: -1.5deg;
   }
 
   .stops-cta {

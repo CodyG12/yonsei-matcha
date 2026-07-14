@@ -8,7 +8,7 @@ interface Props {
 
 const { day, date, location, time } = Astro.props;
 ---
-<div class="stamp-card">
+<div class="stamp-card reveal">
   <div class="stamp-day">{day}</div>
   <div class="stamp-date">{date}</div>
   <div class="stamp-place">{location}</div>
@@ -25,6 +25,7 @@ const { day, date, location, time } = Astro.props;
     border: 2.5px dashed rgba(24, 24, 24, 0.28);
     padding: 22px 20px;
     position: relative;
+    transform: rotate(var(--stamp-rotate, 0deg));
   }
 
   .stamp-day {

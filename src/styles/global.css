@@ -147,3 +147,26 @@ img {
   white-space: nowrap;
   font-family: 'Quicksand', sans-serif;
 }
+
+/*
+  Scroll reveal: gated behind html.js (added by an inline script in
+  BaseLayout before paint) so content never disappears if JS fails to
+  load. --stamp-rotate lets StampCard's whimsical tilt compose with the
+  reveal's translateY instead of being overwritten by it.
+*/
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px) rotate(var(--stamp-rotate, 0deg));
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) rotate(var(--stamp-rotate, 0deg));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal {
+    transition: none;
+  }
+}
