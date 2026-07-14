@@ -2,6 +2,7 @@
 import StampCard from './StampCard.astro';
 import { getSchedule } from '../lib/data';
 
+const igHandle = 'yonseimatcha'; // TODO: confirm the real Instagram handle
 const stops = getSchedule();
 ---
 <section class="section" id="find-us">
@@ -21,7 +22,7 @@ const stops = getSchedule();
         ))}
       </div>
       <div class="stops-cta">
-        <a class="ig-pill" href="https://instagram.com/yonseimatcha" target="_blank" rel="noopener">
+        <a class="ig-pill" href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener">
           Follow for schedule updates →
         </a>
       </div>

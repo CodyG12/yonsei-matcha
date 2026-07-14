@@ -52,3 +52,8 @@ This is a static Astro site with no backend. To deploy on Vercel:
 - **Instagram grid:** currently 8 gradient placeholder tiles in
   `src/components/InstagramFollow.astro`. Replace with real thumbnails the
   same way.
+- **Instagram handle and contact email:** currently placeholders
+  (`yonseimatcha` and `hello@yonseimatcha.com`). Update the `igHandle`
+  constant in `src/components/InstagramFollow.astro` and
+  `src/components/Footer.astro`, and the `igHandle` constant in
+  `src/components/ThisWeeksStops.astro`, once you confirm the real values.
