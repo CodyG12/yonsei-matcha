@@ -1,0 +1,58 @@
+---
+import { formatPrice, type PriceVariant } from '../lib/pricing';
+
+interface Props {
+  name: string;
+  description: string;
+  price: PriceVariant[];
+}
+
+const { name, description, price } = Astro.props;
+---
+<div class="special-card">
+  <div class="top-row">
+    <h4>{name}</h4>
+    <div class="prices">{formatPrice(price)}</div>
+  </div>
+  {description && <p>{description}</p>}
+</div>
+
+<style>
+  .special-card {
+    background: var(--paper);
+    border: 1px solid rgba(24, 24, 24, 0.1);
+    border-radius: 18px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+  }
+
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .special-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .special-card .prices {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--teal-deep);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .special-card p {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(24, 24, 24, 0.72);
+  }
+</style>

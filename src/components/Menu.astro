@@ -1,0 +1,126 @@
+---
+import SpecialCard from './SpecialCard.astro';
+import { formatPrice } from '../lib/pricing';
+import { getMenu } from '../lib/data';
+
+const items = getMenu();
+const staples = items.filter((item) => item.section === 'staple');
+const specials = items.filter((item) => item.section === 'special');
+---
+<section class="section" id="menu">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">The Menu</div>
+      <h2>Staple Collection &amp; weekly specials</h2>
+    </div>
+    <div class="menu-cols">
+      <div>
+        <div class="menu-group-label">
+          Staple Collection <span class="tag">Always on the menu</span>
+        </div>
+        <ul class="staple-list">
+          {staples.map((item) => (
+            <li>
+              <span class="name">{item.name}</span>
+              <span class="price">{formatPrice(item.price)}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="milk-note">
+          🥛 <span><strong>Milk options:</strong> 2%, oat, coconut, almond, soy — while supplies last.</span>
+        </div>
+      </div>
+      <div>
+        <div class="menu-group-label">
+          Specials <span class="tag">Changes weekly</span>
+        </div>
+        {specials.map((item) => (
+          <SpecialCard name={item.name} description={item.description} price={item.price} />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .menu-cols {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  @media (min-width: 800px) {
+    .menu-cols {
+      grid-template-columns: 0.85fr 1.15fr;
+    }
+  }
+
+  .menu-group-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+
+  .menu-group-label .tag {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: rgba(79, 132, 130, 0.15);
+    color: var(--teal-deep);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  .staple-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .staple-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(24, 24, 24, 0.12);
+  }
+
+  .staple-list li:first-child {
+    border-top: 1px solid rgba(24, 24, 24, 0.12);
+  }
+
+  .staple-list .name {
+    font-size: 17px;
+    font-weight: 700;
+  }
+
+  .staple-list .price {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--teal-deep);
+  }
+
+  .milk-note {
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(168, 214, 214, 0.25);
+    border: 1px solid rgba(79, 132, 130, 0.35);
+    border-radius: 16px;
+    padding: 16px 20px;
+    font-size: 14px;
+  }
+
+  .milk-note strong {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+  }
+</style>
