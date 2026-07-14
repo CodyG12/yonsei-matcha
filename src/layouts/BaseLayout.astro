@@ -1,0 +1,39 @@
+---
+import '@fontsource/playfair-display/500.css';
+import '@fontsource/playfair-display/600.css';
+import '@fontsource/playfair-display/700.css';
+import '@fontsource/playfair-display/500-italic.css';
+import '@fontsource/quicksand/500.css';
+import '@fontsource/quicksand/600.css';
+import '@fontsource/quicksand/700.css';
+import '@fontsource/nunito-sans/400.css';
+import '@fontsource/nunito-sans/600.css';
+import '@fontsource/nunito-sans/700.css';
+import '@fontsource/nunito-sans/800.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot name="nav" />
+    <main id="main">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>
