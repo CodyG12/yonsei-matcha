@@ -1,0 +1,102 @@
+---
+---
+<section class="section" id="story">
+  <div class="wrap">
+    <div class="story">
+      <div class="story-photo" aria-hidden="true">
+        <span class="kanji">世</span>
+        <span class="placeholder-label">Photo: family / matcha prep</span>
+      </div>
+      <div>
+        <div class="eyebrow-inline">Our Story</div>
+        <h2>Fourth generation, one whisk at a time.</h2>
+        <div class="tagline">"Kūpuna Kuahā" — honoring the elders' altar.</div>
+        <!--
+          REPLACE: her story in her own words — what "Yonsei" means to her
+          family, how the recipes came from her grandparents, and what she
+          wants people to feel when they visit the stand.
+        -->
+        <p>
+          [Placeholder — this is the spot for her real story: what "Yonsei"
+          means to her family, how the recipes came from her grandparents,
+          and what she wants people to feel when they visit the stand.]
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .story {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 44px;
+    align-items: center;
+  }
+
+  @media (min-width: 720px) {
+    .story {
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+  }
+
+  .story-photo {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-soft);
+    background: linear-gradient(160deg, var(--mint) 0%, var(--teal-deep) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .story-photo .kanji {
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: 220px;
+    color: rgba(255, 255, 255, 0.08);
+    font-weight: 700;
+  }
+
+  .story-photo .placeholder-label {
+    position: relative;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .story .eyebrow-inline {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+  }
+
+  .story h2 {
+    margin-top: 6px;
+    font-size: clamp(26px, 3.5vw, 36px);
+  }
+
+  .story .tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--teal-deep);
+    margin-top: 14px;
+  }
+
+  .story p {
+    line-height: 1.7;
+    font-size: 15.5px;
+    color: rgba(24, 24, 24, 0.8);
+    margin-top: 14px;
+  }
+</style>
