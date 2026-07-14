@@ -1,0 +1,70 @@
+---
+const igHandle = 'yonseimatcha'; // TODO: confirm the real Instagram handle
+---
+<section class="section">
+  <div class="wrap">
+    <div class="follow">
+      <div class="kicker">Stay in the loop</div>
+      <h2>Follow along on Instagram</h2>
+      <p>Weekly market schedules, new specials, and pop-up announcements go up there first.</p>
+      <div class="ig-grid" aria-hidden="true">
+        {Array.from({ length: 8 }).map(() => <div></div>)}
+      </div>
+      <a class="btn btn-primary" href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener">
+        @{igHandle} →
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .follow {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: var(--radius-soft);
+    padding: 68px 24px;
+    text-align: center;
+  }
+
+  .follow .kicker {
+    color: var(--mint);
+  }
+
+  .follow h2 {
+    color: var(--cream);
+    font-size: clamp(28px, 4vw, 40px);
+    margin-top: 8px;
+  }
+
+  .follow p {
+    opacity: 0.75;
+    max-width: 40ch;
+    margin: 14px auto 0;
+    line-height: 1.6;
+  }
+
+  .ig-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 520px;
+    margin: 34px auto 0;
+  }
+
+  .ig-grid div {
+    aspect-ratio: 1;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--mint) 0%, var(--teal-deep) 100%);
+    opacity: 0.5;
+  }
+
+  .ig-grid div:nth-child(2n) {
+    opacity: 0.75;
+  }
+
+  .follow :global(.btn-primary) {
+    margin-top: 30px;
+    background: var(--mint);
+    color: var(--ink);
+  }
+</style>
