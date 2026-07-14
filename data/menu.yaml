@@ -1,0 +1,52 @@
+# section: "staple" (always on menu) or "special" (this week only)
+# price: a list of variants. Most staples have one variant with an empty label.
+#        Specials with a matcha AND hojicha version get two variants — the
+#        label shows before the price, e.g. "Matcha $8.00 / Hojicha $7.50".
+items:
+  - section: staple
+    name: Matcha Latte
+    description: ""
+    price:
+      - label: ""
+        price: 7.50
+
+  - section: staple
+    name: Hojicha Latte
+    description: ""
+    price:
+      - label: ""
+        price: 6.50
+
+  - section: special
+    name: Strawberry Matcha / Hojicha Latte
+    description: Homemade strawberry puree, topped with freeze-dried strawberries.
+    price:
+      - label: Matcha
+        price: 8.00
+      - label: Hojicha
+        price: 7.50
+
+  - section: special
+    name: Banana Cream Matcha / Hojicha Latte
+    description: Topped with crushed Heath, Nilla wafers, and freeze-dried banana.
+    price:
+      - label: Matcha
+        price: 8.50
+      - label: Hojicha
+        price: 7.00
+
+  - section: special
+    name: Kinako Snow Hojicha / Matcha Latte
+    description: Toasted soybean flour "snow" over a classic latte base.
+    price:
+      - label: Hojicha
+        price: 8.50
+      - label: Matcha
+        price: 7.00
+
+  - section: special
+    name: Jasmine Matcha Cloud
+    description: Jasmine tea with sea salt and matcha cream.
+    price:
+      - label: ""
+        price: 7.50

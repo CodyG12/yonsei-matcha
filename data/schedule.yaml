@@ -1,0 +1,16 @@
+# This week's market stops. Add/remove entries freely — the schedule
+# section on the site regenerates from this list, in the order listed.
+# date format: M/D (e.g. 7/10) — shown as-is, no year needed for a weekly popup.
+stops:
+  - day: Friday
+    date: 7/10
+    location: "Ko'olau Night Market"
+    time: 5–9 PM
+  - day: Saturday
+    date: 7/11
+    location: "Mākia Market @ Salt"
+    time: 10 AM–3 PM
+  - day: Sunday
+    date: 7/12
+    location: "Lōkahi Market"
+    time: 9 AM–1 PM
