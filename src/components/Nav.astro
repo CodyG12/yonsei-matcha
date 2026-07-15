@@ -16,7 +16,10 @@
       <a href="#find-us">Find Us</a>
       <a href="#story">Our Story</a>
     </div>
-    <a class="ig-pill" href="#find-us">📍 This week's stops</a>
+    <a class="ig-pill" href="#find-us">
+      <img class="pill-icon" src={`${import.meta.env.BASE_URL}images/matcha.png`} alt="" width="16" height="16" />
+      This week's stops
+    </a>
   </div>
 </nav>
 
@@ -69,5 +72,12 @@
     .navlinks {
       display: flex;
     }
+  }
+
+  .ig-pill .pill-icon {
+    width: 16px;
+    height: 16px;
+    /* icon source is solid black; invert to match the pill's cream text */
+    filter: brightness(0) invert(1);
   }
 </style>
