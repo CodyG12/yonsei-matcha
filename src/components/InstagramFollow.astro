@@ -15,10 +15,18 @@ const placeholderCount = 4; // remaining empty tiles until more photos are added
       <h2>Follow along on Instagram</h2>
       <p>Weekly market schedules, new specials, and pop-up announcements go up there first.</p>
       <div class="ig-grid">
-        <Image src={marketSign} alt="Yonsei Matcha market sign with a fresh matcha latte" width={320} height={320} loading="lazy" />
-        <Image src={marketPrep} alt="Preparing drinks at the Yonsei Matcha market table" width={320} height={320} loading="lazy" />
-        <Image src={strawberryMatcha} alt="Iced strawberry matcha latte topped with a dried strawberry" width={320} height={320} loading="lazy" />
-        <Image src={matchaHojichaPair} alt="A hojicha latte and a strawberry matcha latte side by side" width={320} height={320} loading="lazy" />
+        <a href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener" aria-label="See this photo on Instagram">
+          <Image src={marketSign} alt="Yonsei Matcha market sign with a fresh matcha latte" width={320} height={320} loading="lazy" />
+        </a>
+        <a href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener" aria-label="See this photo on Instagram">
+          <Image src={marketPrep} alt="Preparing drinks at the Yonsei Matcha market table" width={320} height={320} loading="lazy" />
+        </a>
+        <a href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener" aria-label="See this photo on Instagram">
+          <Image src={strawberryMatcha} alt="Iced strawberry matcha latte topped with a dried strawberry" width={320} height={320} loading="lazy" />
+        </a>
+        <a href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener" aria-label="See this photo on Instagram">
+          <Image src={matchaHojichaPair} alt="A hojicha latte and a strawberry matcha latte side by side" width={320} height={320} loading="lazy" />
+        </a>
         {Array.from({ length: placeholderCount }).map(() => <div aria-hidden="true"></div>)}
       </div>
       <a class="btn btn-primary" href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener">
@@ -62,13 +70,24 @@ const placeholderCount = 4; // remaining empty tiles until more photos are added
     margin: 34px auto 0;
   }
 
-  .ig-grid img,
+  .ig-grid a,
   .ig-grid div {
     aspect-ratio: 1;
     border-radius: 14px;
   }
 
-  .ig-grid img {
+  .ig-grid a {
+    display: block;
+    overflow: hidden;
+    transition: opacity 0.2s;
+  }
+
+  .ig-grid a:hover,
+  .ig-grid a:focus-visible {
+    opacity: 0.85;
+  }
+
+  .ig-grid a img {
     width: 100%;
     height: 100%;
     object-fit: cover;
