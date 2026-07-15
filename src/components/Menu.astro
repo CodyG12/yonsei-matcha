@@ -27,7 +27,8 @@ const specials = items.filter((item) => item.section === 'special');
           ))}
         </ul>
         <div class="milk-note">
-          🥛 <span><strong>Milk options:</strong> 2%, oat, coconut, almond, soy — while supplies last.</span>
+          <img class="milk-icon" src={`${import.meta.env.BASE_URL}images/milk.svg`} alt="" width="18" height="18" />
+          <span><strong>Milk options:</strong> 2%, oat, coconut, almond, soy — while supplies last.</span>
         </div>
       </div>
       <div>
@@ -117,6 +118,12 @@ const specials = items.filter((item) => item.section === 'special');
     border-radius: 16px;
     padding: 16px 20px;
     font-size: 14px;
+  }
+
+  .milk-note .milk-icon {
+    flex: none;
+    width: 18px;
+    height: 18px;
   }
 
   .milk-note strong {
