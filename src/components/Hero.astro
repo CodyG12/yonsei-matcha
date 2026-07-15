@@ -1,23 +1,28 @@
 ---
-const headlineWords = ['Matcha,', 'whisked', 'with', 'ohana', 'in', 'mind.'];
+const headlineWords = ["Matcha,", "whisked", "with", "ohana", "in", "mind."];
 ---
+
 <section class="hero">
   <div class="blob blob-1" aria-hidden="true"></div>
   <div class="blob blob-2" aria-hidden="true"></div>
   <div class="wrap">
     <div class="eyebrow">O'ahu Summer Popup · 2026</div>
     <h1>
-      {headlineWords.map((word, i) => (
-        <>
-          <span class="split-word" style={`--i: ${i}`}>{word === 'ohana' ? <em>{word}</em> : word}</span>{' '}
-        </>
-      ))}
+      {
+        headlineWords.map((word, i) => (
+          <>
+            <span class="split-word" style={`--i: ${i}`}>
+              {word === "ohana" ? <em>{word}</em> : word}
+            </span>{" "}
+          </>
+        ))
+      }
     </h1>
     <!-- REPLACE: swap in final hero copy once approved -->
     <p class="sub">
-      A fourth-generation matcha popup moving between O'ahu's markets all
-      summer — ceremonial-grade tea, homemade toppings, and a menu built on
-      family staples.
+      A fourth-generation matcha popup moving between O'ahu's markets all summer
+      — ceremonial-grade tea, homemade toppings, and a menu built on family
+      staples.
     </p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#find-us">Find this week's stops</a>
@@ -67,7 +72,7 @@ const headlineWords = ['Matcha,', 'whisked', 'with', 'ohana', 'in', 'mind.'];
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-size: 12.5px;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -80,7 +85,7 @@ const headlineWords = ['Matcha,', 'whisked', 'with', 'ohana', 'in', 'mind.'];
   }
 
   .eyebrow::before {
-    content: '●';
+    content: "●";
     color: var(--teal-deep);
     font-size: 10px;
   }
@@ -101,7 +106,7 @@ const headlineWords = ['Matcha,', 'whisked', 'with', 'ohana', 'in', 'mind.'];
     display: inline-block;
     opacity: 0;
     transform: translateY(0.6em);
-    animation: split-word-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: split-word-in 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     animation-delay: calc(var(--i) * 110ms);
   }
 
