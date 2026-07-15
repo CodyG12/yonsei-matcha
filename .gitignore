@@ -3,3 +3,7 @@ dist/
 .astro/
 .vercel/
 .DS_Store
+
+# Raw/working reference material, not part of the deployed site
+temp_assets/
+yonsei-matcha-mockup_1.html
