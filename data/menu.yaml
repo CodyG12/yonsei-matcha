@@ -50,3 +50,12 @@ items:
     price:
       - label: ""
         price: 7.50
+
+  - section: special
+    name: Mango Coconut Matcha / Hojicha Latte
+    description: Mango puree topped with coconut foam (vegan!)
+    price:
+      - label: Matcha
+        price: 8.50
+      - label: Hojicha
+        price: 7.50
