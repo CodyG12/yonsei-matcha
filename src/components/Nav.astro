@@ -104,8 +104,13 @@
   }
 
   .navlinks a:hover::after,
-  .navlinks a:focus-visible::after {
+  .navlinks a:focus-visible::after,
+  .navlinks a.is-active::after {
     transform: scaleX(1);
+  }
+
+  .navlinks a.is-active {
+    opacity: 1;
   }
 
   @media (min-width: 720px) {
