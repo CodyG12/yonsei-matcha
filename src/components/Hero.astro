@@ -6,7 +6,7 @@ const headlineWords = ["Matcha,", "whisked", "with", "ohana", "in", "mind."];
   <div class="blob blob-1" aria-hidden="true"></div>
   <div class="blob blob-2" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="eyebrow">O'ahu Summer Popup · 2026</div>
+    <div class="eyebrow">O'ahu Summer Popup</div>
     <h1>
       {
         headlineWords.map((word, i) => (
@@ -20,8 +20,9 @@ const headlineWords = ["Matcha,", "whisked", "with", "ohana", "in", "mind."];
     </h1>
     <!-- REPLACE: swap in final hero copy once approved -->
     <p class="sub">
-      A fourth-generation matcha popup moving between O'ahu's markets all summer
-      — ceremonial-grade tea, homemade toppings, and a menu built on family
+      An ʻohana-inspired matcha pop-up sharing my love for tea, sustainability,
+      and local flavors while making its way around markets across Oʻahu. –
+      strong matcha flavor, homemade toppings, and a menu built on family
       staples.
     </p>
     <div class="hero-cta">
@@ -117,9 +118,10 @@ const headlineWords = ["Matcha,", "whisked", "with", "ohana", "in", "mind."];
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .split-word {
-      animation-delay: 0ms;
+  @keyframes fade-rise-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
@@ -129,6 +131,10 @@ const headlineWords = ["Matcha,", "whisked", "with", "ohana", "in", "mind."];
     max-width: 44ch;
     line-height: 1.6;
     color: rgba(24, 24, 24, 0.78);
+    opacity: 0;
+    transform: translateY(14px);
+    animation: fade-rise-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 500ms;
   }
 
   .hero-cta {
@@ -136,5 +142,27 @@ const headlineWords = ["Matcha,", "whisked", "with", "ohana", "in", "mind."];
     display: flex;
     gap: 14px;
     flex-wrap: wrap;
+  }
+
+  .hero-cta .btn {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: fade-rise-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-cta .btn:nth-child(1) {
+    animation-delay: 650ms;
+  }
+
+  .hero-cta .btn:nth-child(2) {
+    animation-delay: 730ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .split-word,
+    .hero p.sub,
+    .hero-cta .btn {
+      animation-delay: 0ms;
+    }
   }
 </style>

@@ -16,6 +16,25 @@
       <a href="#find-us">Find Us</a>
       <a href="#story">Our Story</a>
     </div>
+    <button
+      type="button"
+      class="menu-toggle"
+      popovertarget="mobile-nav-panel"
+      aria-label="Open menu"
+    >
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+    </button>
+    <a class="ig-pill nav-pill" href="#find-us">
+      <img class="pill-icon" src={`${import.meta.env.BASE_URL}images/matcha.png`} alt="" width="16" height="16" />
+      This week's stops
+    </a>
+  </div>
+  <div id="mobile-nav-panel" popover class="mobile-nav-panel">
+    <a href="#menu">Menu</a>
+    <a href="#find-us">Find Us</a>
+    <a href="#story">Our Story</a>
     <a class="ig-pill" href="#find-us">
       <img class="pill-icon" src={`${import.meta.env.BASE_URL}images/matcha.png`} alt="" width="16" height="16" />
       This week's stops
@@ -79,5 +98,125 @@
     height: 16px;
     /* icon source is solid black; invert to match the pill's cream text */
     filter: brightness(0) invert(1);
+  }
+
+  /* Below 720px the logo + hamburger already fill the row, so the full-text
+     pill can't fit without overflowing; it moves into the mobile nav panel
+     instead, where it has a full row to itself. */
+  @media (max-width: 719px) {
+    .nav-pill {
+      display: none;
+    }
+  }
+
+  /* Mobile nav toggle: a native popover-backed disclosure, so outside-click
+     and Escape-to-close come from the browser with no custom JS. */
+  .menu-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 12px;
+    border: none;
+    background: none;
+    border-radius: 10px;
+    cursor: pointer;
+    flex: none;
+  }
+
+  .menu-toggle:hover {
+    background: rgba(24, 24, 24, 0.06);
+  }
+
+  .menu-toggle .bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition:
+      transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  nav:has(#mobile-nav-panel:popover-open) .menu-toggle .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  nav:has(#mobile-nav-panel:popover-open) .menu-toggle .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  nav:has(#mobile-nav-panel:popover-open) .menu-toggle .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  @media (min-width: 720px) {
+    .menu-toggle {
+      display: none;
+    }
+  }
+
+  .mobile-nav-panel {
+    position: fixed;
+    inset: auto 24px auto auto;
+    top: 66px;
+    margin: 0;
+    border: none;
+    padding: 10px;
+    width: min(220px, calc(100vw - 48px));
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--paper);
+    border-radius: 18px;
+    box-shadow: 0 12px 32px rgba(24, 24, 24, 0.18);
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      overlay 0.25s allow-discrete,
+      display 0.25s allow-discrete;
+  }
+
+  .mobile-nav-panel:popover-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @starting-style {
+    .mobile-nav-panel:popover-open {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  }
+
+  .mobile-nav-panel a:not(.ig-pill) {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ink);
+    padding: 10px 12px;
+    border-radius: 10px;
+  }
+
+  .mobile-nav-panel a:not(.ig-pill):hover,
+  .mobile-nav-panel a:not(.ig-pill):focus-visible {
+    background: rgba(79, 132, 130, 0.12);
+  }
+
+  .mobile-nav-panel .ig-pill {
+    justify-content: center;
+    margin-top: 6px;
+  }
+
+  @media (min-width: 720px) {
+    .mobile-nav-panel {
+      display: none;
+    }
   }
 </style>
