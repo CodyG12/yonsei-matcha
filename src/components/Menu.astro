@@ -21,12 +21,25 @@ const specials = items.filter((item) => item.section === "special");
         </div>
         <ul class="staple-list">
           {
-            staples.map((item) => (
-              <li>
-                <span class="name">{item.name}</span>
-                <span class="price">{formatPrice(item.price)}</span>
-              </li>
-            ))
+            staples.map((item) =>
+              item.description ? (
+                <li>
+                  <details>
+                    <summary class="staple-row">
+                      <span class="name">{item.name}</span>
+                      <span class="price">{formatPrice(item.price)}</span>
+                      <span class="chevron" aria-hidden="true" />
+                    </summary>
+                    <p class="staple-desc">{item.description}</p>
+                  </details>
+                </li>
+              ) : (
+                <li class="staple-row">
+                  <span class="name">{item.name}</span>
+                  <span class="price">{formatPrice(item.price)}</span>
+                </li>
+              )
+            )
           }
         </ul>
         <div class="milk-note">
@@ -101,15 +114,32 @@ const specials = items.filter((item) => item.section === "special");
   }
 
   .staple-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
     padding: 16px 0;
     border-bottom: 1px solid rgba(24, 24, 24, 0.12);
   }
 
   .staple-list li:first-child {
     border-top: 1px solid rgba(24, 24, 24, 0.12);
+  }
+
+  .staple-list .staple-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .staple-list summary.staple-row {
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .staple-list summary.staple-row::-webkit-details-marker {
+    display: none;
+  }
+
+  .staple-list summary.staple-row::marker {
+    content: "";
   }
 
   .staple-list .name {
@@ -122,6 +152,30 @@ const specials = items.filter((item) => item.section === "special");
     font-weight: 600;
     font-size: 17px;
     color: var(--teal-deep);
+  }
+
+  .staple-list .chevron {
+    flex: none;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-left: 2px;
+    border-right: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    opacity: 0.55;
+    transform: rotate(45deg);
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .staple-list details[open] .chevron {
+    transform: rotate(225deg);
+  }
+
+  .staple-list .staple-desc {
+    margin: 10px 0 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(24, 24, 24, 0.72);
   }
 
   .milk-note {

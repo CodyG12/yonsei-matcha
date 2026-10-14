@@ -78,13 +78,34 @@
   }
 
   .navlinks a {
+    position: relative;
     text-decoration: none;
     opacity: 0.75;
     transition: opacity 0.2s;
   }
 
-  .navlinks a:hover {
+  .navlinks a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--teal-deep);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .navlinks a:hover,
+  .navlinks a:focus-visible {
     opacity: 1;
+  }
+
+  .navlinks a:hover::after,
+  .navlinks a:focus-visible::after {
+    transform: scaleX(1);
   }
 
   @media (min-width: 720px) {
