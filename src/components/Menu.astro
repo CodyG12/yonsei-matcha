@@ -1,17 +1,18 @@
 ---
-import SpecialCard from './SpecialCard.astro';
-import { formatPrice } from '../lib/pricing';
-import { getMenu } from '../lib/data';
+import SpecialCard from "./SpecialCard.astro";
+import { formatPrice } from "../lib/pricing";
+import { getMenu } from "../lib/data";
 
 const items = getMenu();
-const staples = items.filter((item) => item.section === 'staple');
-const specials = items.filter((item) => item.section === 'special');
+const staples = items.filter((item) => item.section === "staple");
+const specials = items.filter((item) => item.section === "special");
 ---
+
 <section class="section" id="menu">
   <div class="wrap">
     <div class="section-head">
       <div class="kicker">The Menu</div>
-      <h2>Staple Collection &amp; weekly specials</h2>
+      <h2>Staple Collection &amp; Specials</h2>
     </div>
     <div class="menu-cols">
       <div>
@@ -19,25 +20,40 @@ const specials = items.filter((item) => item.section === 'special');
           Staple Collection <span class="tag">Always on the menu</span>
         </div>
         <ul class="staple-list">
-          {staples.map((item) => (
-            <li>
-              <span class="name">{item.name}</span>
-              <span class="price">{formatPrice(item.price)}</span>
-            </li>
-          ))}
+          {
+            staples.map((item) => (
+              <li>
+                <span class="name">{item.name}</span>
+                <span class="price">{formatPrice(item.price)}</span>
+              </li>
+            ))
+          }
         </ul>
         <div class="milk-note">
-          <img class="milk-icon" src={`${import.meta.env.BASE_URL}images/milk.svg`} alt="" width="18" height="18" />
-          <span><strong>Milk options:</strong> 2%, oat, coconut, almond, soy — while supplies last.</span>
+          <img
+            class="milk-icon"
+            src={`${import.meta.env.BASE_URL}images/milk.svg`}
+            alt=""
+            width="18"
+            height="18"
+          />
+          <span
+            ><strong>Milk options:</strong> 2%, oat, coconut, almond, soy — while
+            supplies last.</span
+          >
         </div>
       </div>
       <div>
-        <div class="menu-group-label">
-          Specials <span class="tag">Changes weekly</span>
-        </div>
-        {specials.map((item) => (
-          <SpecialCard name={item.name} description={item.description} price={item.price} />
-        ))}
+        <div class="menu-group-label">Specials</div>
+        {
+          specials.map((item) => (
+            <SpecialCard
+              name={item.name}
+              description={item.description}
+              price={item.price}
+            />
+          ))
+        }
       </div>
     </div>
   </div>
@@ -60,14 +76,14 @@ const specials = items.filter((item) => item.section === 'special');
     display: flex;
     align-items: center;
     gap: 10px;
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     font-weight: 600;
     font-size: 22px;
     margin-bottom: 18px;
   }
 
   .menu-group-label .tag {
-    font-family: 'Quicksand', sans-serif;
+    font-family: "Quicksand", sans-serif;
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
@@ -102,7 +118,7 @@ const specials = items.filter((item) => item.section === 'special');
   }
 
   .staple-list .price {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     font-weight: 600;
     font-size: 17px;
     color: var(--teal-deep);
@@ -127,7 +143,7 @@ const specials = items.filter((item) => item.section === 'special');
   }
 
   .milk-note strong {
-    font-family: 'Playfair Display', serif;
+    font-family: "Playfair Display", serif;
     font-weight: 600;
   }
 </style>
