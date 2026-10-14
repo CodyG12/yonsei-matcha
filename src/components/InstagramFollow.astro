@@ -4,9 +4,12 @@ import marketSign from '../assets/images/market-sign-matcha.jpg';
 import marketPrep from '../assets/images/market-prep.jpg';
 import strawberryMatcha from '../assets/images/strawberry-matcha.jpg';
 import matchaHojichaPair from '../assets/images/matcha-hojicha-pair.jpg';
+import bananaStrawberryBoard from '../assets/images/banana-strawberry-matcha-board.jpg';
+import marketStandDrinks from '../assets/images/market-stand-drinks.jpg';
+import strawberryHojichaBoard from '../assets/images/strawberry-hojicha-board.jpg';
+import bananaCreamCloseup from '../assets/images/banana-cream-matcha-closeup.jpg';
 
 const igHandle = 'yonseimatcha'; // TODO: confirm the real Instagram handle
-const placeholderCount = 4; // remaining empty tiles until more photos are added
 ---
 <section class="section">
   <div class="wrap">
@@ -27,7 +30,18 @@ const placeholderCount = 4; // remaining empty tiles until more photos are added
         <a href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener" aria-label="See this photo on Instagram">
           <Image src={matchaHojichaPair} alt="A hojicha latte and a strawberry matcha latte side by side" width={320} height={320} loading="lazy" />
         </a>
-        {Array.from({ length: placeholderCount }).map(() => <div aria-hidden="true"></div>)}
+        <a href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener" aria-label="See this photo on Instagram">
+          <Image src={bananaStrawberryBoard} alt="A banana cream matcha latte and an iced strawberry matcha latte on a wooden board" width={320} height={320} loading="lazy" />
+        </a>
+        <a href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener" aria-label="See this photo on Instagram">
+          <Image src={marketStandDrinks} alt="Matcha drinks at the market stand with the Yonsei Matcha sign in the background" width={320} height={320} loading="lazy" />
+        </a>
+        <a href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener" aria-label="See this photo on Instagram">
+          <Image src={strawberryHojichaBoard} alt="An iced strawberry matcha latte and a hojicha latte on a decorated wooden board" width={320} height={320} loading="lazy" />
+        </a>
+        <a href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener" aria-label="See this photo on Instagram">
+          <Image src={bananaCreamCloseup} alt="Close-up of a banana cream matcha latte topped with crushed cookie and a freeze-dried banana chip" width={320} height={320} loading="lazy" />
+        </a>
       </div>
       <a class="btn btn-primary" href={`https://instagram.com/${igHandle}`} target="_blank" rel="noopener">
         @{igHandle} →
@@ -70,13 +84,9 @@ const placeholderCount = 4; // remaining empty tiles until more photos are added
     margin: 34px auto 0;
   }
 
-  .ig-grid a,
-  .ig-grid div {
+  .ig-grid a {
     aspect-ratio: 1;
     border-radius: 14px;
-  }
-
-  .ig-grid a {
     display: block;
     overflow: hidden;
     transition: opacity 0.2s;
@@ -92,15 +102,6 @@ const placeholderCount = 4; // remaining empty tiles until more photos are added
     height: 100%;
     object-fit: cover;
     display: block;
-  }
-
-  .ig-grid div {
-    background: linear-gradient(135deg, var(--mint) 0%, var(--teal-deep) 100%);
-    opacity: 0.5;
-  }
-
-  .ig-grid div:nth-of-type(2n) {
-    opacity: 0.75;
   }
 
   .follow :global(.btn-primary) {
